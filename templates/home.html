@@ -3,7 +3,7 @@ $def with (logged_in, settings)
 <html>
 	<head>
 		<link rel="search" type="application/opensearchdescription+xml" title="SearchDeck" href="https://SearchDeck.coolcodersj.repl.co/static/application/opensearch.xml">
-		<link href="https://Minimalist.coolcodersj.repl.co/style.css" rel="stylesheet" type="text/css" />
+		<link href="/style.css" rel="stylesheet" type="text/css" /> <!--where, i dont see line 19 of main.py | knowing me I probs did it wrong somehow -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon.png">
 		<title>SearchDeck</title>
@@ -39,55 +39,54 @@ $def with (logged_in, settings)
 			</span>
 		<input class="input" name="q" placeholder="Search Anything...." style="width: 97%">
 		</div>
-		<br><br>
 		<h2>Advanced Search</h2><br>
-		<h3>Search Engines to Display -</h3>
-		$if "Google" in settings['engines']:
-			<label class="container">Google
-			<input type="checkbox" checked="checked" name="Google">
-			<span class="checkmark"></span>
-			</label>
-		$else:
-			<label class="container">Google
-			<input type="checkbox" name="Google">
-			<span class="checkmark"></span>
-			</label>
+    <table><tr><td>
+      <h3>Search Engines to Display -</h3>
+      $if "Google" in settings['engines']:
+        <label class="container">Google
+        <input type="checkbox" checked="checked" name="Google">
+        <span class="checkmark"></span>
+        </label>
+      $else:
+        <label class="container">Google
+        <input type="checkbox" name="Google">
+        <span class="checkmark"></span>
+        </label>
 
-		$if "Bing" in settings['engines']:
-			<label class="container">Bing
-			<input type="checkbox" checked="checked" name="Bing">
-			<span class="checkmark"></span>
-			</label>
-		$else:
-			<label class="container">Bing
-			<input type="checkbox" name="Bing">
-			<span class="checkmark"></span>
-			</label>
+      $if "Bing" in settings['engines']:
+        <label class="container">Bing
+        <input type="checkbox" checked="checked" name="Bing">
+        <span class="checkmark"></span>
+        </label>
+      $else:
+        <label class="container">Bing
+        <input type="checkbox" name="Bing">
+        <span class="checkmark"></span>
+        </label>
 
-		$if "DuckDuckGo" in settings['engines']:
-			<label class="container">DuckDuckGo
-			<input type="checkbox" checked="checked" name="DuckDuckGo">
-			<span class="checkmark"></span>
-			</label>
-		$else:
-			<label class="container">DuckDuckGo
-			<input type="checkbox" name="DuckDuckGo">
-			<span class="checkmark"></span>
-			</label>
+      $if "DuckDuckGo" in settings['engines']:
+        <label class="container">DuckDuckGo
+        <input type="checkbox" checked="checked" name="DuckDuckGo">
+        <span class="checkmark"></span>
+        </label>
+      $else:
+        <label class="container">DuckDuckGo
+        <input type="checkbox" name="DuckDuckGo">
+        <span class="checkmark"></span>
+        </label>
 
-		$if "Yahoo" in settings['engines']:
-			<label class="container">Yahoo
-			<input type="checkbox" checked="checked" name="Yahoo">
-			<span class="checkmark"></span>
-			</label>
-		$else:
-			<label class="container">Yahoo
-			<input type="checkbox" name="Yahoo">
-			<span class="checkmark"></span>
-			</label>
-
-		<br>
-		<br>
+      $if "Yahoo" in settings['engines']:
+        <label class="container">Yahoo
+        <input type="checkbox" checked="checked" name="Yahoo">
+        <span class="checkmark"></span>
+        </label>
+      $else:
+        <label class="container">Yahoo
+        <input type="checkbox" name="Yahoo">
+        <span class="checkmark"></span>
+        </label>
+    </td>
+    <td>
 		<h3>What to Search</h3><br>
 		$if settings['default_typ'] == "text":
 			<label class="container">Text
@@ -239,7 +238,7 @@ $def with (logged_in, settings)
 			<input type="radio" value="shopping" checked="checked" name="typ">
 			<span class="radio"></span>
 			</label>
-		
+    </td></tr></table>
 		</form>
 	</body>
 </html>

@@ -16,13 +16,18 @@ urls = (
 	'/login', 'login',
 	'/signup', 'signup',
 	'/settings', 'settings',
-	'/about', 'about'
+	'/about', 'about',
+  '/style.css', 'supersecretstylesheet'
 )
 
 app = web.application(urls, globals())
 render = web.template.render("templates")
 session = web.session.Session(app, web.session.DiskStore('sessions'))
 
+class supersecretstylesheet:
+	def GET(self):
+		web.header("Content-Type", "text/css")
+		return open("templates/style.css", "rb").read()
 
 cache = {}
 

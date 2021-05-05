@@ -48,12 +48,12 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 				flex-direction: column;
 			}
 
-			.material-icons {
+			.material-icons, .material-icons-round {
 				float: right;
 				border-radius: 6px;
 				padding: 5px;
 			}
-			.material-icons:hover {
+			.material-icons:hover, .material-icons-round:hover {
 				cursor: pointer;
 				background: #595959;
 			}
@@ -74,6 +74,30 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 					transition: 0.5s !important;
 					scale: 110% !important;
 				}
+
+				.bar {
+					height: 6px;
+					width: 150%;
+				}
+
+				.oof {
+					padding-bottom: 0px !important;
+					overflow: hidden;
+					padding-left: 0px !important;
+				}
+
+				.btt {
+					right: 20px;
+				}
+
+				.icns {
+					position: sticky !important;
+					top: 0 !important;
+					z-index: 100;
+					background: #21252b;
+					margin-top: 15px;
+				}
+				
 			</style>
 
 			<script>
@@ -107,6 +131,7 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 					window.location.href = url
 				};
 			</script>
+			<div class="icns">
 			<form method="get" action="/" id="search">
 			<div>
 				<span class="material-icons" style="float: right; background: #161f27; padding: 5px; height: 22px" onclick="document.getElementById('search').submit()">
@@ -120,30 +145,33 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 			</div>
 			</form>
 			<br><br>
-			<span class="material-icons" style="float: left;" onclick="typ('text')">
+			<div style="background: #21252b;">
+			<span class="material-icons" style="float: left; background: #21252b;" onclick="typ('text')">
 			article
 			</span>
-			<span class="material-icons" style="float: left;" onclick="typ('image')">
+			<span class="material-icons" style="float: left; background: #21252b;" onclick="typ('image')">
 			image
 			</span>
-			<span class="material-icons" style="float: left;" onclick="typ('video')">
+			<span class="material-icons" style="float: left; background: #21252b;" onclick="typ('video')">
 			smart_display
 			</span>
-			<span class="material-icons" style="float: left;" onclick="typ('news')">
+			<span class="material-icons" style="float: left; background: #21252b;" onclick="typ('news')">
 			feed
 			</span>
-			<span class="material-icons" style="float: left;" onclick="typ('maps')">
+			<span class="material-icons" style="float: left; background: #21252b;" onclick="typ('maps')">
 			location_on
 			</span>
-			<span class="material-icons"  style="float: left;" onclick="typ('shopping')">
+			<span class="material-icons"  style="float: left; background: #21252b;" onclick="typ('shopping')">
 			shopping_cart
 			</span>
-			<span class="material-icons-round"  onclick="sort('table')" style="float: right;">
+			<span class="material-icons-round"  onclick="sort('table')" style="float: right; background: #21252b;">
 			grid_view
 			</span>
-					<span class="material-icons" onclick="sort('list')">
+					<span class="material-icons" onclick="sort('list')" style="background: #21252b;">
 			list
 			</span>
+			</div>
+			</div>
 			<br><br>
 	</head>
 	<body style="overflow: auto !important;">
@@ -195,6 +223,7 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 						<br><br>
 
 				</div>
+				<br><br>
 			$if info != []:
 				<style>
 					#info:hover {
@@ -210,7 +239,8 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 					$if info['Infobox'] != "":
 						<div id="infobox" style="transition: 0.2s; opacity: 0; display: none;">
 						$for topic in info['Infobox']['content']:
-							<p>$topic['label'] -- $topic['value']</p>
+							$if "label" in topic:
+								<p>$topic['label'] -- $topic['value']</p>
 							<hr>
 						</div>
 						<br><br>
@@ -250,6 +280,11 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 				</div>
 				<br><br>
 			$if sort =="list":
+				<a href="#">
+				<div class="btt">
+					<i class="btt-arr"></i>
+				</div>
+				</a>
 				<ul>
 					$if "Google" in engines:
 						<li><a href="#google">Google</a></li>
@@ -270,7 +305,6 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 							<a href="$result['link']" target="_blank">
 							<div class="card">
 								<h3>$result['title']</h3>
-								<p>$:result['desc']</p>
 							</div>
 							</a>
 					</div>
@@ -282,7 +316,6 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 							<a href="$result['link']" target="_blank">
 							<div class="card">
 								<h3>$result['title']</h3>
-								<p>$result['desc']</p>
 							</div>
 							</a>
 					</div>
@@ -294,7 +327,6 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 							<a href="$result['link']" target="_blank">
 							<div class="card">
 								<h3>$result['title']</h3>
-								<p>$:result['desc']</p>
 							</div>
 							</a>
 					</div>
@@ -306,7 +338,6 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 							<a href="$result['link']" target="_blank">
 							<div class="card">
 								<h3>$result['title']</h3>
-								<p>$:result['desc']</p>
 							</div>
 							</a>
 					</div>
@@ -349,22 +380,22 @@ $def with (google, bing, duckduckgo, yahoo, q, sort, typ, engines, logged_in, di
 						<tr>
 							$if "Google" in engines:
 								$if len(google) > x:
-									<td><a href="$google[x]['link']" target="_blank"><div class="card smal"><h2>$google[x]['title']</h2><br><p>$:google[x]['desc']</p></div></a></td>
+									<td><a href="$google[x]['link']" target="_blank"><div class="card smal oof"><div style="padding-left: 15px !important;"><h2>$google[x]['title']</h2><br><p>$:google[x]['desc']</p></div><div class="bar" style="background-color: #ff0000;"></div></div></a></td>
 								$else:
 									<td></td>
 							$if "Bing" in engines:
 								$if len(bing) > x:
-									<td><a href="$bing[x]['link']" target="_blank"><div class="card smal"><h2>$bing[x]['title']</h2><br><p>$:bing[x]['desc']</p></div></a></td>
+									<td><a href="$bing[x]['link']" target="_blank"><div class="card smal oof"><div style="padding-left: 15px !important;"><h2>$bing[x]['title']</h2><br><p>$:bing[x]['desc']</p></div><div class="bar" style="background-color: #00ff00;"></div></div></a></td>
 								$else:
 									<td></td>
 							$if "DuckDuckGo" in engines:
 								$if len(duckduckgo) > x:
-									<td><a href="$duckduckgo[x]['link']" target="_blank"><div class="card smal"><h2>$duckduckgo[x]['title']</h2><br><p>$:duckduckgo[x]['desc']</p></div></a></td>
+									<td><a href="$duckduckgo[x]['link']" target="_blank"><div class="card smal oof"><div style="padding-left: 15px !important;"><h2>$duckduckgo[x]['title']</h2><br><p>$:duckduckgo[x]['desc']</p></div><div class="bar" style="background-color: #0000ff;"></div></div></a></td>
 								$else:
 									<td></td>
 							$if "Yahoo" in engines:
 								$if len(yahoo) > x:
-									<td><a href="$yahoo[x]['link']" target="_blank"><div class="card smal"><h2>$yahoo[x]['title']</h2><br><p>$:yahoo[x]['desc']</p></div></a></td>
+									<td><a href="$yahoo[x]['link']" target="_blank"><div class="card smal oof"><div style="padding-left: 15px !important;"><h2>$yahoo[x]['title']</h2><br><p>$:yahoo[x]['desc']</p></div><div class="bar" style="background-color: #f0f0f0;"></div></div></a></td>
 								$else:
 									<td></td>
 						</tr>
